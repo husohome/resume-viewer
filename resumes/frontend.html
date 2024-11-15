@@ -23,8 +23,8 @@
         .xml-dunder-tag[style*="--tag-color"] {
             /* Styles using the custom property */
             border-color: var(--tag-color) !important;
-            background-color: color-mix(in srgb, var(--tag-color) 20%, transparent) !important;
-            color: var(--tag-color) !important;
+            background-color: color-mix(in srgb, var(--tag-color) 10%, transparent) !important;
+            /* color: var(--tag-color) !important; */
         }
         .xml-dunder-tag::after {
             content: attr(data-tag);

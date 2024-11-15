@@ -73,7 +73,7 @@ function resumeViewer() {
             `;
         },
 
-        renderXmlDunderTags(text, style = 'hashtag') {
+        renderXmlDunderTags(text, style = 'underline') {
             const tagPattern = /<__(\w+)__>(.*?)<\/__\1__>/g;
             let lastIndex = 0;
             let result = '';
