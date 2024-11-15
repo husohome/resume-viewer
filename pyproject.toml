@@ -1,0 +1,15 @@
+
+[tool.poetry]
+name = "resumes"
+version = "0.1.0"
+description = "A short description of your project"
+authors = ["husohome98@gmail.com"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]

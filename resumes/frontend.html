@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Resume Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="resumeData.js"></script>
+    <script src="resumeViewer.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .xml-dunder-tag {
+        /* Base styles */
+        }
+        .xml-dunder-tag[style*="--tag-color"] {
+            /* Styles using the custom property */
+            border-color: var(--tag-color) !important;
+            background-color: color-mix(in srgb, var(--tag-color) 20%, transparent) !important;
+            color: var(--tag-color) !important;
+        }
+        .xml-dunder-tag::after {
+            content: attr(data-tag);
+            position: absolute;
+            background-color: #1a202c;
+            color: white;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            display: none;
+        }
+        .xml-dunder-tag:hover::after {
+            display: block;
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div x-data="resumeViewer()" x-init="init()" class="container mx-auto p-4">
+        <div class="flex flex-col lg:flex-row gap-4">
+            <!-- Left Column -->
+            <div class="w-full lg:w-1/4 space-y-4">
+                <template x-for="(component, index) in leftColumn" :key="index">
+                    <div x-html="component"></div>
+                </template>
+            </div>
+            
+            <!-- Middle Column -->
+            <div class="w-full lg:w-2/4 space-y-4">
+                <template x-for="(component, index) in middleColumn" :key="index">
+                    <div x-html="component"></div>
+                </template>
+            </div>
+
+            <!-- Right Column -->
+            <div class="w-full lg:w-1/4 space-y-4">
+                <template x-for="(component, index) in rightColumn" :key="index">
+                    <div x-html="component"></div>
+                </template>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="mt-6 flex justify-between">
+            <button @click="prevResume" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" :disabled="currentIndex === 0">Previous Resume</button>
+            <button @click="nextResume" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" :disabled="currentIndex === resumes.length - 1">Next Resume</button>
+        </div>
+    </div>
+</body>
+</html>
